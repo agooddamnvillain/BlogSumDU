@@ -18,7 +18,6 @@ class CommentController extends Controller
         $comment = new Comment();
         $comment->post_id = $post;
         $comment->user_id = Auth::id();
-        $comment->comment = $request->comment;
         $comment->save();
         Toastr::success('Comment Successfully Published :)','Success');
         return redirect()->back();
