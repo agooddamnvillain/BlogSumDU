@@ -10,14 +10,17 @@ class SubscriberController extends Controller
 {
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'email' => 'required|email|unique:subscribers'
+        $request->validate([
+            'email' => 'required|email|unique:subscribers',
         ]);
 
-        $subscriber = new Subscriber();
-        $subscriber->email = $request->email;
-        $subscriber->save();
-        Toastr::success('You Successfully added to our subscriber list :)','Success');
+        $subscriber = Subscriber::create([
+            'email' => $request->email,
+        ]);
+
+        Toastr::success('You have been successfully added to our subscriber list :)', 'Success');
+
         return redirect()->back();
     }
 }
+
