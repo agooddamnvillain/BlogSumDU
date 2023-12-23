@@ -9,12 +9,6 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-
-    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
@@ -23,6 +17,7 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $posts = Post::latest()->approved()->published()->take(6)->get();
-        return view('welcome',compact('categories','posts'));
+
+        return view('welcome', compact('categories', 'posts'));
     }
 }
